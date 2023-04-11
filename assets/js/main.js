@@ -49,8 +49,10 @@ const phone3 = document.querySelector(".chats__phone3");
 var currentSender;
 var receiverKey;
 
+//byte array;
 let secretKey = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 const counter = 5;
+
 
 const Sender = mssge => {
   let SenderCht = document.createElement("div");
@@ -65,7 +67,7 @@ const Sender = mssge => {
       phone1.appendChild(SenderCht);
       break;
     
-    case 2:
+    case 1:
       phone3.appendChild(SenderCht);
       break;
   }
@@ -99,7 +101,7 @@ const Receiver = (mssge, i_messageKey) => {
       phone3.appendChild(ReceiverCht);
       break;
     
-    case 2:
+    case 1:
       phone1.appendChild(ReceiverCht);
       break;
   }
@@ -134,7 +136,7 @@ const send = (mssge, sender) => {
       receiverKey = k_AliceKey;
       break;
     
-    case 2:
+    case 1:
       publicKeyReciever = k_BobKey.publicKey;
       receiverKey = k_BobKey;
       break;
