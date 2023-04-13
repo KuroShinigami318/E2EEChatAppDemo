@@ -49,8 +49,6 @@ const phone3 = document.querySelector(".chats__phone3");
 var currentSender;
 var receiverKey;
 
-//byte array;
-let secretKey = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 const counter = 5;
 
 
@@ -124,8 +122,26 @@ function decrypt(encrypted_message, unlockKey){
   const decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
   return decryptedText;
 }
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+const GenerateSecretKey = (keyLengthInBytes) =>
+{
+  //byte array;
+  let secretKey = [];
+  for (let i = 0; i < keyLengthInBytes; ++i)
+  {
+    secretKey.push(getRndInteger(0, 128));
+  }
+  return secretKey;
+}
+
 const send = (mssge, sender) => {
   let enkeys = [];
+  const secretKey = GenerateSecretKey(16);
+  console.log(secretKey);
   messageToSend = encrypt(mssge, secretKey);
   let crypt = new JSEncrypt();
   var publicKeyReciever;
